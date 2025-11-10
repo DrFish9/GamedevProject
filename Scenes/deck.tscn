@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bsy4jlc0mw11y"]
+
+[ext_resource type="Texture2D" uid="uid://cqn8b4s30yjcm" path="res://Sprites/card_back.png" id="1_ukesx"]
+
+[node name="Deck" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_ukesx")
