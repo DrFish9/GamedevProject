@@ -1,13 +1,13 @@
 [gd_scene load_steps=5 format=3 uid="uid://bejq8g77arbav"]
 
-[ext_resource type="Texture2D" uid="uid://1oi5o37rwkl1" path="res://Sprites/card_1.png" id="1_2yd5i"]
 [ext_resource type="Script" uid="uid://c50cccdv0w2xj" path="res://Scripts/card_slot.gd" id="1_dd0t8"]
+[ext_resource type="Texture2D" uid="uid://ck8v20i030ohk" path="res://Assets/Rune_1.png" id="2_dd0t8"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dd0t8"]
 blend_mode = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2yd5i"]
-size = Vector2(50, 70)
+size = Vector2(52, 52)
 
 [node name="CardSlot" type="Node2D"]
 script = ExtResource("1_dd0t8")
@@ -15,10 +15,12 @@ script = ExtResource("1_dd0t8")
 [node name="CardSlotImage" type="Sprite2D" parent="."]
 material = SubResource("CanvasItemMaterial_dd0t8")
 position = Vector2(-3.8146973e-06, 5.722046e-06)
-texture = ExtResource("1_2yd5i")
+scale = Vector2(2, 2)
+texture = ExtResource("2_dd0t8")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Collision" type="Area2D" parent="."]
 collision_layer = 2
+collision_mask = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision"]
 shape = SubResource("RectangleShape2D_2yd5i")

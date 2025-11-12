@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1oi5o37rwkl1"
-path="res://.godot/imported/card_1.png-68651017a961b399cce91859e15e5093.ctex"
+uid="uid://c2o8gsqwbnejd"
+path="res://.godot/imported/Rune_3.png-b364929f278207715184dfe9c341981a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/card_1.png"
-dest_files=["res://.godot/imported/card_1.png-68651017a961b399cce91859e15e5093.ctex"]
+source_file="res://Assets/Rune_3.png"
+dest_files=["res://.godot/imported/Rune_3.png-b364929f278207715184dfe9c341981a.ctex"]
 
 [params]
 

@@ -1,8 +1,22 @@
-[gd_scene load_steps=2 format=3 uid="uid://bsy4jlc0mw11y"]
+[gd_scene load_steps=4 format=3 uid="uid://bsy4jlc0mw11y"]
 
-[ext_resource type="Texture2D" uid="uid://cqn8b4s30yjcm" path="res://Sprites/card_back.png" id="1_ukesx"]
+[ext_resource type="Script" uid="uid://8jbgufn76fvd" path="res://Scripts/deck.gd" id="1_io7pv"]
+[ext_resource type="Texture2D" uid="uid://cj7oricps4wjd" path="res://Assets/Rune_blank.png" id="2_io7pv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ukesx"]
+size = Vector2(50, 70)
 
 [node name="Deck" type="Node2D"]
+z_index = -1
+script = ExtResource("1_io7pv")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_ukesx")
+[node name="DeckImage" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("2_io7pv")
+
+[node name="Collision" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision"]
+shape = SubResource("RectangleShape2D_ukesx")

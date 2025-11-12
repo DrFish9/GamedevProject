@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b5a22gju6h4yv"]
+
+[ext_resource type="Script" uid="uid://cg23fv8qm0q7d" path="res://Scenes/collision_component.gd" id="1_gtekh"]
+
+[node name="CollisionComponent" type="Area2D"]
+script = ExtResource("1_gtekh")

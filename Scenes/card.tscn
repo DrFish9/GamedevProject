@@ -1,14 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://c0h2ra7tjgyrx"]
+[gd_scene load_steps=9 format=3 uid="uid://c0h2ra7tjgyrx"]
 
-[ext_resource type="Texture2D" uid="uid://j1vb534x7aji" path="res://Sprites/card_01.png" id="1_0qqmn"]
 [ext_resource type="Script" uid="uid://c4gtaghtcg0l4" path="res://Scripts/card.gd" id="1_wf8id"]
-[ext_resource type="Texture2D" uid="uid://1oi5o37rwkl1" path="res://Sprites/card_1.png" id="2_brehn"]
+[ext_resource type="Texture2D" uid="uid://ck8v20i030ohk" path="res://Assets/Rune_1.png" id="2_brehn"]
+[ext_resource type="Texture2D" uid="uid://c2o8gsqwbnejd" path="res://Assets/Rune_3.png" id="3_eumee"]
+[ext_resource type="Texture2D" uid="uid://cj7oricps4wjd" path="res://Assets/Rune_blank.png" id="4_e6po8"]
+[ext_resource type="FontFile" uid="uid://cxe6iuuo5ncjn" path="res://Fonts/press_start_2p/PressStart2P.ttf" id="4_eumee"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_eumee"]
 blend_mode = 2
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0qqmn"]
-size = Vector2(50, 70)
+size = Vector2(52, 52)
+
+[sub_resource type="Theme" id="Theme_e6po8"]
+default_font = ExtResource("4_eumee")
+default_font_size = 40
 
 [node name="Card" type="Node2D" node_paths=PackedStringArray("card_image", "card_highlight")]
 physics_interpolation_mode = 1
@@ -18,6 +24,7 @@ card_highlight = NodePath("CardHighlight")
 
 [node name="CardHighlight" type="Sprite2D" parent="."]
 visible = false
+texture_filter = 1
 material = SubResource("CanvasItemMaterial_eumee")
 position = Vector2(-1.9999971, 7.748604e-07)
 scale = Vector2(1.1, 1.08)
@@ -25,13 +32,30 @@ texture = ExtResource("2_brehn")
 
 [node name="CardImage" type="Sprite2D" parent="."]
 position = Vector2(-1.9999931, -7.867813e-06)
-texture = ExtResource("1_0qqmn")
+scale = Vector2(2, 2)
+texture = ExtResource("3_eumee")
 
-[node name="CardCollision" type="Area2D" parent="."]
+[node name="Collision" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CardCollision"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision"]
 position = Vector2(-2, 0)
 shape = SubResource("RectangleShape2D_0qqmn")
 
-[connection signal="mouse_entered" from="CardCollision" to="." method="_on_card_collision_mouse_entered"]
-[connection signal="mouse_exited" from="CardCollision" to="." method="_on_card_collision_mouse_exited"]
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(34, 36)
+texture = ExtResource("4_e6po8")
+
+[node name="CardText" type="RichTextLabel" parent="Sprite2D"]
+modulate = Color(0, 0, 0, 1)
+texture_filter = 1
+offset_left = -13.0
+offset_top = -4.0
+offset_right = 121.999985
+offset_bottom = 36.0
+scale = Vector2(0.2, 0.2)
+theme = SubResource("Theme_e6po8")
+bbcode_enabled = true
+text = "[center]100[/center]"
+
+[connection signal="mouse_entered" from="Collision" to="." method="_on_card_collision_mouse_entered"]
+[connection signal="mouse_exited" from="Collision" to="." method="_on_card_collision_mouse_exited"]
