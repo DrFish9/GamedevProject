@@ -5,13 +5,15 @@ const COLLISION_MASK_CARD = 1
 const COLLISION_MASK_CARD_SLOT = 2
 
 const DEFAULT_CARD_MOVE_SPEED = 0.2
+const DEFAULT_CARD_SCALE = 0.9
+const DEFAULT_CARD_SCALE_UP = 1.0
+const DEFAULT_CARD_SCALE_DOWN = 0.9
 
 var card_being_dragged: Card
 var mouse_position_relative_to_card_being_dragged: Vector2
 var card_being_hovered: Card
 var screen_size: Vector2
 var is_hovering_card: bool
-var hovered_scale := Vector2(1.1, 1.1)
 
 @export var player_hand: PlayerHand
 @export var input_manager: InputManager
@@ -56,6 +58,7 @@ func start_drag(card) -> void:
 	if card_slot:
 		if card_slot.interactable and card_slot.card_in_slot == card:
 			card_slot.card_in_slot = null
+			card_being_dragged.in_slot = false
 			
 
 
@@ -68,7 +71,9 @@ func finish_drag() -> void:
 			if not card_slot.card_in_slot:
 				player_hand.remove_card_from_hand(card_being_dragged)
 				card_being_dragged.position = card_slot.position
+				card_being_dragged.scale = Vector2(DEFAULT_CARD_SCALE, DEFAULT_CARD_SCALE)
 				card_slot.card_in_slot = card_being_dragged	
+				card_being_dragged.in_slot = true
 
 			else:
 				player_hand.add_card_to_hand(card_being_dragged, DEFAULT_CARD_MOVE_SPEED)
@@ -107,6 +112,8 @@ func on_card_hovered_off(card):
 		is_hovering_card = false
 		card_being_hovered = null
 	highlight_card(card, false)
+	if card.in_slot:
+		card.scale = Vector2(DEFAULT_CARD_SCALE_DOWN, DEFAULT_CARD_SCALE_DOWN)
 	#if raycast_check_card():
 		#on_card_hovered(raycast_check_card()) 
 
@@ -114,9 +121,11 @@ func on_card_hovered_off(card):
 
 func highlight_card(card: Card, hovered: bool) -> void:
 	if hovered:
-		card.scale = hovered_scale
+		card.scale = Vector2(DEFAULT_CARD_SCALE_UP, DEFAULT_CARD_SCALE_UP)
+		card.display_attributes(true, 0.1)
 	else:
-		card.scale = Vector2(1.0, 1.0)
+		card.scale = Vector2(DEFAULT_CARD_SCALE, DEFAULT_CARD_SCALE)
+		card.display_attributes(false, 0.1)
 
 
 #func raycast_check_card() -> Node2D:

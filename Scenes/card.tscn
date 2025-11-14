@@ -1,61 +1,224 @@
-[gd_scene load_steps=9 format=3 uid="uid://c0h2ra7tjgyrx"]
+[gd_scene load_steps=13 format=3 uid="uid://c0h2ra7tjgyrx"]
 
 [ext_resource type="Script" uid="uid://c4gtaghtcg0l4" path="res://Scripts/card.gd" id="1_wf8id"]
 [ext_resource type="Texture2D" uid="uid://ck8v20i030ohk" path="res://Assets/Rune_1.png" id="2_brehn"]
 [ext_resource type="Texture2D" uid="uid://c2o8gsqwbnejd" path="res://Assets/Rune_3.png" id="3_eumee"]
 [ext_resource type="Texture2D" uid="uid://cj7oricps4wjd" path="res://Assets/Rune_blank.png" id="4_e6po8"]
-[ext_resource type="FontFile" uid="uid://cxe6iuuo5ncjn" path="res://Fonts/press_start_2p/PressStart2P.ttf" id="4_eumee"]
+[ext_resource type="FontFile" uid="uid://ko5tdwgb126q" path="res://Fonts/NbPixelFontBundle_v1_0/Habbo.ttf" id="5_e6po8"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_eumee"]
-blend_mode = 2
+blend_mode = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0qqmn"]
 size = Vector2(52, 52)
 
 [sub_resource type="Theme" id="Theme_e6po8"]
-default_font = ExtResource("4_eumee")
-default_font_size = 40
+default_font = ExtResource("5_e6po8")
+default_font_size = 80
 
-[node name="Card" type="Node2D" node_paths=PackedStringArray("card_image", "card_highlight")]
+[sub_resource type="Animation" id="Animation_e6po8"]
+resource_name = "card_flip"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CardImage:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(0.1, 2), Vector2(2, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CardImageBack:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(0.1, 2), Vector2(2, 2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CardImage:z_index")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [-1, 1]
+}
+
+[sub_resource type="Animation" id="Animation_bnspj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CardImage:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CardImageBack:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2, 2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CardImage:z_index")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [-1]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CardImage:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("CardImage:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xnv4g"]
+resource_name = "merge"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CardImage:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.06666667, 0.19999999),
+"transitions": PackedFloat32Array(1, 9.513723),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(2.5, 2.5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CardImage:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333333, 0.16666663, 0.20000005),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(5, 0), Vector2(0, 0), Vector2(-5, 0), Vector2(0, 0), Vector2(5, 0), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CardImage:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.20000002),
+"transitions": PackedFloat32Array(1, 3.9733384),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(2.184344, 2.184344, 2.184344, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_bnspj"]
+_data = {
+&"RESET": SubResource("Animation_bnspj"),
+&"card_flip": SubResource("Animation_e6po8"),
+&"merge": SubResource("Animation_xnv4g")
+}
+
+[node name="Card" type="Node2D" node_paths=PackedStringArray("card_image", "card_highlight", "card_attribute_1", "card_value_1", "card_collision_shape", "animation_player")]
 physics_interpolation_mode = 1
+scale = Vector2(0.8, 0.8)
 script = ExtResource("1_wf8id")
 card_image = NodePath("CardImage")
 card_highlight = NodePath("CardHighlight")
+card_attribute_1 = NodePath("CardAttribute1")
+card_value_1 = NodePath("CardAttribute1/Value")
+card_collision_shape = NodePath("Collision/CollisionShape2D")
+animation_player = NodePath("AnimationPlayer")
+
+[node name="CardImageBack" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(2, 2)
+texture = ExtResource("4_e6po8")
+
+[node name="CardImage" type="Sprite2D" parent="."]
+z_index = -1
+scale = Vector2(2, 2)
+texture = ExtResource("3_eumee")
 
 [node name="CardHighlight" type="Sprite2D" parent="."]
 visible = false
+z_index = -1
 texture_filter = 1
 material = SubResource("CanvasItemMaterial_eumee")
-position = Vector2(-1.9999971, 7.748604e-07)
-scale = Vector2(1.1, 1.08)
+scale = Vector2(2.1, 2.1)
 texture = ExtResource("2_brehn")
-
-[node name="CardImage" type="Sprite2D" parent="."]
-position = Vector2(-1.9999931, -7.867813e-06)
-scale = Vector2(2, 2)
-texture = ExtResource("3_eumee")
 
 [node name="Collision" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collision"]
-position = Vector2(-2, 0)
 shape = SubResource("RectangleShape2D_0qqmn")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(34, 36)
+[node name="CardAttribute1" type="Sprite2D" parent="."]
+position = Vector2(-2, 3)
 texture = ExtResource("4_e6po8")
 
-[node name="CardText" type="RichTextLabel" parent="Sprite2D"]
+[node name="Value" type="RichTextLabel" parent="CardAttribute1"]
 modulate = Color(0, 0, 0, 1)
 texture_filter = 1
 offset_left = -13.0
-offset_top = -4.0
-offset_right = 121.999985
-offset_bottom = 36.0
+offset_top = -8.0
+offset_right = 117.0
+offset_bottom = 121.99997
 scale = Vector2(0.2, 0.2)
 theme = SubResource("Theme_e6po8")
 bbcode_enabled = true
-text = "[center]100[/center]"
+text = "[center]5x[/center]"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_bnspj")
+}
 
 [connection signal="mouse_entered" from="Collision" to="." method="_on_card_collision_mouse_entered"]
 [connection signal="mouse_exited" from="Collision" to="." method="_on_card_collision_mouse_exited"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

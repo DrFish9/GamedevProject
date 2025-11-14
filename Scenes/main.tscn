@@ -1,41 +1,78 @@
-[gd_scene load_steps=6 format=3 uid="uid://d00de4ov64iel"]
+[gd_scene load_steps=11 format=3 uid="uid://d00de4ov64iel"]
 
 [ext_resource type="Script" uid="uid://deqr2l4158nw2" path="res://Scripts/card_manager.gd" id="1_jjgbg"]
 [ext_resource type="PackedScene" uid="uid://bejq8g77arbav" path="res://Scenes/card_slot.tscn" id="3_8gbba"]
 [ext_resource type="Script" uid="uid://1dxal8dqlgj6" path="res://Scripts/player_hand.gd" id="3_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://bsy4jlc0mw11y" path="res://Scenes/deck.tscn" id="4_jjvhh"]
 [ext_resource type="PackedScene" uid="uid://36w3e0w3r34c" path="res://Scenes/input_manager.tscn" id="5_kry3j"]
+[ext_resource type="FontFile" uid="uid://ko5tdwgb126q" path="res://Fonts/NbPixelFontBundle_v1_0/Habbo.ttf" id="6_21xkr"]
+[ext_resource type="Script" uid="uid://cpdihtbyiwxfv" path="res://Scripts/battle_manager.gd" id="7_6bp64"]
+[ext_resource type="PackedScene" uid="uid://c7d6kdiflto6o" path="res://Scenes/explosion.tscn" id="8_344ge"]
+[ext_resource type="PackedScene" uid="uid://drgi7o7lysoar" path="res://Scenes/fireball.tscn" id="9_ynf5e"]
+
+[sub_resource type="Theme" id="Theme_6bp64"]
+default_font = ExtResource("6_21xkr")
+default_font_size = 64
 
 [node name="Main" type="Node2D"]
 
 [node name="Background" type="Sprite2D" parent="."]
+
+[node name="CardSlots" type="Node2D" parent="."]
+
+[node name="CardSlot" parent="CardSlots" instance=ExtResource("3_8gbba")]
+position = Vector2(54, 129)
+
+[node name="CardSlot2" parent="CardSlots" instance=ExtResource("3_8gbba")]
+position = Vector2(122.00001, 130)
+
+[node name="CardSlot3" parent="CardSlots" instance=ExtResource("3_8gbba")]
+position = Vector2(183, 132)
+
+[node name="CardSlot4" parent="CardSlots" instance=ExtResource("3_8gbba")]
+position = Vector2(242, 133)
 
 [node name="CardManager" type="Node2D" parent="." node_paths=PackedStringArray("player_hand", "input_manager")]
 script = ExtResource("1_jjgbg")
 player_hand = NodePath("../PlayerHand")
 input_manager = NodePath("../InputManager")
 
-[node name="CardSlot" parent="." instance=ExtResource("3_8gbba")]
-position = Vector2(123, 64)
-
-[node name="CardSlot2" parent="." instance=ExtResource("3_8gbba")]
-position = Vector2(45, 61)
-
-[node name="CardSlot3" parent="." instance=ExtResource("3_8gbba")]
-position = Vector2(201, 64)
-
-[node name="CardSlot4" parent="." instance=ExtResource("3_8gbba")]
-position = Vector2(276, 64)
-
 [node name="PlayerHand" type="Node2D" parent="." node_paths=PackedStringArray("card_manager")]
 script = ExtResource("3_jjvhh")
 card_manager = NodePath("../CardManager")
 
 [node name="Deck" parent="." node_paths=PackedStringArray("card_manager", "player_hand") instance=ExtResource("4_jjvhh")]
-position = Vector2(437, 164)
+position = Vector2(44, 308)
 card_manager = NodePath("../CardManager")
 player_hand = NodePath("../PlayerHand")
 
-[node name="InputManager" parent="." node_paths=PackedStringArray("card_manager", "deck") instance=ExtResource("5_kry3j")]
+[node name="InputManager" parent="." node_paths=PackedStringArray("card_manager", "player_hand", "deck") instance=ExtResource("5_kry3j")]
 card_manager = NodePath("../CardManager")
+player_hand = NodePath("../PlayerHand")
 deck = NodePath("../Deck")
+
+[node name="TurnButton" type="Button" parent="."]
+offset_left = 554.0
+offset_top = 171.0
+offset_right = 702.0
+offset_bottom = 230.0
+scale = Vector2(0.5, 0.5)
+theme = SubResource("Theme_6bp64")
+text = "Commit"
+
+[node name="BattleManager" type="Node" parent="." node_paths=PackedStringArray("button_turn", "card_slot_1", "card_slot_2", "card_slot_3", "card_slot_4")]
+script = ExtResource("7_6bp64")
+button_turn = NodePath("../TurnButton")
+card_slot_1 = NodePath("../CardSlots/CardSlot")
+card_slot_2 = NodePath("../CardSlots/CardSlot2")
+card_slot_3 = NodePath("../CardSlots/CardSlot3")
+card_slot_4 = NodePath("../CardSlots/CardSlot4")
+
+[node name="Explosion" parent="." instance=ExtResource("8_344ge")]
+z_index = 100
+position = Vector2(55, 129)
+
+[node name="Fireball" parent="." instance=ExtResource("9_ynf5e")]
+position = Vector2(285, 118)
+
+[connection signal="pressed" from="TurnButton" to="BattleManager" method="_on_turn_button_pressed"]

@@ -5,15 +5,15 @@ const SCREEN_WIDTH = 640
 const SCREEN_HEIGHT = 360
 const DEFAULT_CARD_MOVE_SPEED = 0.2
 
-#const HAND_SIZE = 10
-const CARD_WIDTH = 50
+const MAX_HAND_SIZE = 10
+const CARD_WIDTH = 45
 const HAND_POSITION_Y = 300
 
 @export var card_manager: CardManager
 
 var player_hand: Array[Card]
 @warning_ignore("integer_division")
-@onready var center_screen_x = SCREEN_WIDTH /2 + 50
+@onready var center_screen_x = SCREEN_WIDTH /2 
 @warning_ignore("integer_division")
 @onready var hand_pos_y = SCREEN_HEIGHT * 3/4
 

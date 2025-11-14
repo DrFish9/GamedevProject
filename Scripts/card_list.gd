@@ -1,8 +1,8 @@
 
-const CARDS = { # param1, param2
-	"bruh": [1, 2],
-	"gyat": [3, 4],
-	"rizz": [2, 3],
-	"goon": [4, 5],
+const CARDS = { # const value, variable value, type
+	"Rune_1": [1, 2],
+	"Rune_2": [3, 4],
+	"Rune_3": [2, 3],
+	"Rune_4": [4, 5],
 	
 }

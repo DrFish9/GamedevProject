@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://drgi7o7lysoar"]
+
+[sub_resource type="Curve" id="Curve_toovh"]
+_data = [Vector2(0.0048076957, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.41573036), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_xi7wk"]
+offsets = PackedFloat32Array(0, 0.18131869, 0.5989011, 1)
+colors = PackedColorArray(0.88431424, 3.3450872e-06, 3.85046e-07, 1, 0.9411765, 0.52156866, 0.20392157, 1, 0.80193585, 0.73051506, 0.15287039, 1, 1, 1, 1, 0)
+
+[node name="Fireball" type="Node2D"]
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 2048
+lifetime = 0.5
+emission_shape = 1
+emission_sphere_radius = 16.0
+gravity = Vector2(0, -600)
+radial_accel_min = -50.0
+radial_accel_max = -40.0
+scale_amount_min = 0.5
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_toovh")
+color_ramp = SubResource("Gradient_xi7wk")

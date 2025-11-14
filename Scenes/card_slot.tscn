@@ -10,6 +10,7 @@ blend_mode = 2
 size = Vector2(52, 52)
 
 [node name="CardSlot" type="Node2D"]
+scale = Vector2(0.9, 0.9)
 script = ExtResource("1_dd0t8")
 
 [node name="CardSlotImage" type="Sprite2D" parent="."]
