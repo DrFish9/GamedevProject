@@ -52,12 +52,13 @@ func animate_card_merge(card_slot_array) -> void:
 func on_tween_finished():
 	final_card.connect("merge_finished", on_finished_merging)
 	final_card.animation_player.play("merge")
-
+	$"../aura/CPUParticles2D".emitting = true
+	
 
 func on_finished_merging():
 	print("goon")
-	$"../Explosion/CPUParticles2D".emitting = true
 	for card in cards_merged:
 		card.queue_free()
 		print("goon")
 	cards_merged = []
+	$"../aura/CPUParticles2D".emitting = false

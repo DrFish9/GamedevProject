@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://36w3e0w3r34c" path="res://Scenes/input_manager.tscn" id="5_kry3j"]
 [ext_resource type="FontFile" uid="uid://ko5tdwgb126q" path="res://Fonts/NbPixelFontBundle_v1_0/Habbo.ttf" id="6_21xkr"]
 [ext_resource type="Script" uid="uid://cpdihtbyiwxfv" path="res://Scripts/battle_manager.gd" id="7_6bp64"]
-[ext_resource type="PackedScene" uid="uid://c7d6kdiflto6o" path="res://Scenes/explosion.tscn" id="8_344ge"]
+[ext_resource type="PackedScene" uid="uid://dvaqienibganv" path="res://Scenes/aura.tscn" id="9_hptm8"]
 [ext_resource type="PackedScene" uid="uid://drgi7o7lysoar" path="res://Scenes/fireball.tscn" id="9_ynf5e"]
 
 [sub_resource type="Theme" id="Theme_6bp64"]
@@ -68,11 +68,11 @@ card_slot_2 = NodePath("../CardSlots/CardSlot2")
 card_slot_3 = NodePath("../CardSlots/CardSlot3")
 card_slot_4 = NodePath("../CardSlots/CardSlot4")
 
-[node name="Explosion" parent="." instance=ExtResource("8_344ge")]
-z_index = 100
-position = Vector2(55, 129)
-
 [node name="Fireball" parent="." instance=ExtResource("9_ynf5e")]
 position = Vector2(285, 118)
+
+[node name="aura" parent="." instance=ExtResource("9_hptm8")]
+z_index = -1
+position = Vector2(55, 128)
 
 [connection signal="pressed" from="TurnButton" to="BattleManager" method="_on_turn_button_pressed"]
