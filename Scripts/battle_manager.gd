@@ -136,6 +136,7 @@ func on_finished_merging():
 	cards_merged = []
 	$"../aura/CPUParticles2D".emitting = false
 	$"../Explosion/CPUParticles2D".emitting = true
+	explosion.get_node("FireBoom").playing = true
 	
 	
 	
@@ -148,6 +149,7 @@ func on_finished_merging():
 	#$"../DarkBall/CPUParticles2D".orbit_velocity_min = 0.0
 	#$"../DarkBall/CPUParticles2D".orbit_velocity_max = 0.0
 	
+	projectile.get_node("FireWoosh").playing = true
 	tween.tween_property(projectile, "position", enemy_manager.card_being_selected.position, 4) 
 	tween.parallel().tween_property(projectile, "scale", Vector2(1.5, 1.5), 3.2)
 	tween.tween_property(projectile, "scale", Vector2(2.5, 2.5), .3)
@@ -155,6 +157,7 @@ func on_finished_merging():
 	tween.tween_callback(func(): 
 		explosion.position = projectile.position
 		explosion.get_node("CPUParticles2D").emitting = true
+		explosion.get_node("FireBoom").playing = true
 		)
 	tween.tween_callback(func(): 
 		projectile.position = Vector2(-100000, -1000000)
