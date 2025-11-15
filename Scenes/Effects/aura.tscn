@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvaqienibganv"]
+
+[ext_resource type="Script" uid="uid://c26krs6wnschu" path="res://Scripts/aura.gd" id="1_i3d6r"]
+
+[sub_resource type="Curve" id="Curve_c1vyj"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, 360), 0.0, 0.0, 0, 0, Vector2(0.30769232, -230.56177), 0.0, 0.0, 0, 0, Vector2(0.5913462, 222.47192), 0.0, 0.0, 0, 0, Vector2(0.84615386, -182.02246), 5048.0903, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="Curve" id="Curve_xncvk"]
+_data = [Vector2(0.014423072, 0.97752815), 0.0, 0.0, 0, 0, Vector2(1, 0.34831464), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="aura" type="Node2D"]
+script = ExtResource("1_i3d6r")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 64
+lifetime = 0.5
+emission_shape = 1
+emission_sphere_radius = 30.0
+direction = Vector2(-1, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 125.0
+angular_velocity_min = -73.75
+angular_velocity_max = 518.65
+angular_velocity_curve = SubResource("Curve_c1vyj")
+scale_amount_min = 2.0
+scale_amount_max = 8.0
+scale_amount_curve = SubResource("Curve_xncvk")

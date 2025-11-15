@@ -6,8 +6,10 @@ signal left_mouse_button_released
 
 const COLLISION_MASK_CARD = 1
 const COLLISION_MASK_DECK = 4
+const COLLISION_MASK_ENEMY = 8
 
 @export var card_manager: CardManager
+@export var enemy_manager: EnemyManager
 @export var player_hand: PlayerHand
 @export var deck: Deck
 
@@ -39,7 +41,11 @@ func raycast_at_cursor() -> Node2D:
 				card_manager.start_drag(card_found)
 		elif result_collision_mask == COLLISION_MASK_DECK:
 			if player_hand.player_hand.size() < player_hand.MAX_HAND_SIZE:
-				deck.draw_card() 
+				deck.draw_card()
+		elif result_collision_mask == COLLISION_MASK_ENEMY:
+			var enemy_found = object_collider.get_parent()	
+			if enemy_found:
+				enemy_manager.select_enemy(enemy_found)
 	return null
 	
 	

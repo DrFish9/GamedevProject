@@ -1,0 +1,127 @@
+[gd_scene load_steps=16 format=3 uid="uid://cw3u86d3i8r82"]
+
+[ext_resource type="Texture2D" uid="uid://cj7oricps4wjd" path="res://Assets/Rune_blank.png" id="1_287tu"]
+[ext_resource type="Script" uid="uid://bmwqj47lmoo56" path="res://Scripts/enemy.gd" id="1_ghaa6"]
+[ext_resource type="Texture2D" uid="uid://tuesmoov0ctl" path="res://Assets/Enemy_plate.png" id="2_287tu"]
+[ext_resource type="FontFile" uid="uid://ko5tdwgb126q" path="res://Fonts/NbPixelFontBundle_v1_0/Habbo.ttf" id="4_1dp5w"]
+[ext_resource type="Texture2D" uid="uid://cw23jaix30so0" path="res://Assets/Enemy_1.png" id="4_287tu"]
+[ext_resource type="Texture2D" uid="uid://cf156igrbt2c2" path="res://Assets/Enemy_attribute.png" id="4_auwsv"]
+[ext_resource type="Texture2D" uid="uid://cl5axf846krlc" path="res://Assets/Tilesets/slimezPack.png" id="7_1dp5w"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_auwsv"]
+blend_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8uf12"]
+size = Vector2(102, 62.5)
+
+[sub_resource type="Theme" id="Theme_po0sg"]
+default_font = ExtResource("4_1dp5w")
+default_font_size = 80
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_auwsv"]
+atlas = ExtResource("7_1dp5w")
+region = Rect2(64, 32, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8uf12"]
+atlas = ExtResource("7_1dp5w")
+region = Rect2(96, 32, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_po0sg"]
+atlas = ExtResource("7_1dp5w")
+region = Rect2(128, 32, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_haro7"]
+atlas = ExtResource("7_1dp5w")
+region = Rect2(160, 32, 32, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_56vhr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_auwsv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8uf12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_po0sg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_haro7")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[node name="Enemy" type="Node2D" node_paths=PackedStringArray("card_image", "card_highlight", "enemy_image", "card_attribute_1", "card_value_1", "card_collision_shape")]
+script = ExtResource("1_ghaa6")
+card_image = NodePath("CardImage")
+card_highlight = NodePath("CardHighlight")
+enemy_image = NodePath("EnemyImage")
+card_attribute_1 = NodePath("CardAttribute1")
+card_value_1 = NodePath("CardAttribute1/Value")
+card_collision_shape = NodePath("Collision/CollisionShape2D")
+
+[node name="CardImageBack" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(2, 2)
+texture = ExtResource("1_287tu")
+
+[node name="CardImage" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("2_287tu")
+
+[node name="CardHighlight" type="Sprite2D" parent="."]
+visible = false
+z_index = -2
+texture_filter = 1
+material = SubResource("CanvasItemMaterial_auwsv")
+scale = Vector2(1.1, 1.1)
+texture = ExtResource("2_287tu")
+
+[node name="Collision" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Collision"]
+position = Vector2(0, -9)
+shape = SubResource("RectangleShape2D_8uf12")
+
+[node name="CardAttribute1" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+z_index = -2
+texture = ExtResource("4_auwsv")
+
+[node name="Value" type="RichTextLabel" parent="CardAttribute1"]
+modulate = Color(0, 0, 0, 1)
+texture_filter = 1
+anchors_preset = -1
+anchor_top = 0.37500003
+anchor_bottom = 0.37500003
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 287.99994
+offset_bottom = 37.999992
+scale = Vector2(0.2, 0.2)
+theme = SubResource("Theme_po0sg")
+bbcode_enabled = true
+text = "[center]5x[/center]"
+metadata/_edit_use_anchors_ = true
+
+[node name="EnemyImage" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("4_287tu")
+offset = Vector2(0, -32)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -17)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_56vhr")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.7870772
+flip_h = true
+
+[connection signal="mouse_entered" from="Collision" to="." method="_on_collision_mouse_entered"]
+[connection signal="mouse_exited" from="Collision" to="." method="_on_collision_mouse_exited"]

@@ -55,16 +55,20 @@ func start_drag(card) -> void:
 	card_list.erase(card)
 	card_list.append(card)
 	card_update_z_index()
+	highlight_card(card_being_dragged, false, true)
 	if card_slot:
 		if card_slot.interactable and card_slot.card_in_slot == card:
 			card_slot.card_in_slot = null
 			card_being_dragged.in_slot = false
+			
+			card_being_dragged = null
 			
 
 
 func finish_drag() -> void:
 	var card_slot = raycast_check_card_slot()
 	if card_being_dragged:
+		highlight_card(card_being_dragged, false, true)
 		card_being_dragged.card_highlight.visible = false
 	
 		if card_slot:
@@ -86,7 +90,7 @@ func connect_card_signal(card) -> void:
 	card.connect("hovered", on_card_hovered)
 	card.connect("hovered_off", on_card_hovered_off)
 	card_list.append(card)
-	card.z_index = card_list.bsearch(card)
+	card.z_index = card_list.find(card)
 	
 	
 func on_left_mouse_button_pressed() -> void:
@@ -98,7 +102,7 @@ func on_left_mouse_button_released() -> void:
 		finish_drag()
 	
 
-func on_card_hovered(card):
+func on_card_hovered(card: Card):
 	if !is_hovering_card or card.z_index > card_being_hovered.z_index:
 		if card_being_hovered:
 			on_card_hovered_off(card_being_hovered)
@@ -111,7 +115,7 @@ func on_card_hovered_off(card):
 	if card == card_being_hovered:
 		is_hovering_card = false
 		card_being_hovered = null
-	highlight_card(card, false)
+		highlight_card(card, false)
 	if card.in_slot:
 		card.scale = Vector2(DEFAULT_CARD_SCALE_DOWN, DEFAULT_CARD_SCALE_DOWN)
 	#if raycast_check_card():
@@ -119,13 +123,16 @@ func on_card_hovered_off(card):
 
 
 
-func highlight_card(card: Card, hovered: bool) -> void:
-	if hovered:
-		card.scale = Vector2(DEFAULT_CARD_SCALE_UP, DEFAULT_CARD_SCALE_UP)
-		card.display_attributes(true, 0.1)
-	else:
-		card.scale = Vector2(DEFAULT_CARD_SCALE, DEFAULT_CARD_SCALE)
-		card.display_attributes(false, 0.1)
+func highlight_card(card: Card, hovered: bool, lock_highlight:= false) -> void:
+	if !card.highlight_locked:
+		if hovered:
+			card.scale = Vector2(DEFAULT_CARD_SCALE_UP, DEFAULT_CARD_SCALE_UP)
+			card.display_attributes(true, 0.1)
+		else:
+			card.scale = Vector2(DEFAULT_CARD_SCALE, DEFAULT_CARD_SCALE)
+			card.display_attributes(false, 0.1)
+	if lock_highlight:
+		card.highlight_locked = !card.highlight_locked
 
 
 #func raycast_check_card() -> Node2D:

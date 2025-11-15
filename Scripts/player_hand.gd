@@ -6,8 +6,9 @@ const SCREEN_HEIGHT = 360
 const DEFAULT_CARD_MOVE_SPEED = 0.2
 
 const MAX_HAND_SIZE = 10
-const CARD_WIDTH = 45
-const HAND_POSITION_Y = 300
+const CARD_WIDTH = 50
+const HAND_POSITION_Y = 295
+const HAND_OFFSET_X = 42
 
 @export var card_manager: CardManager
 
@@ -46,7 +47,7 @@ func update_hand_position(speed):
 
 func calculate_card_position(card_index):
 	var total_width: float = (player_hand.size() - 1) * CARD_WIDTH
-	var x_offset = center_screen_x + card_index * CARD_WIDTH - total_width / 2 
+	var x_offset = center_screen_x + HAND_OFFSET_X + card_index * CARD_WIDTH - total_width / 2 
 	return x_offset
 
 

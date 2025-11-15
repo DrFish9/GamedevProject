@@ -1,10 +1,12 @@
-[gd_scene load_steps=13 format=3 uid="uid://c0h2ra7tjgyrx"]
+[gd_scene load_steps=16 format=3 uid="uid://c0h2ra7tjgyrx"]
 
 [ext_resource type="Script" uid="uid://c4gtaghtcg0l4" path="res://Scripts/card.gd" id="1_wf8id"]
 [ext_resource type="Texture2D" uid="uid://ck8v20i030ohk" path="res://Assets/Rune_1.png" id="2_brehn"]
 [ext_resource type="Texture2D" uid="uid://c2o8gsqwbnejd" path="res://Assets/Rune_3.png" id="3_eumee"]
 [ext_resource type="Texture2D" uid="uid://cj7oricps4wjd" path="res://Assets/Rune_blank.png" id="4_e6po8"]
+[ext_resource type="Texture2D" uid="uid://815htfp1tjmp" path="res://Assets/card_textbox.png" id="5_bnspj"]
 [ext_resource type="FontFile" uid="uid://ko5tdwgb126q" path="res://Fonts/NbPixelFontBundle_v1_0/Habbo.ttf" id="5_e6po8"]
+[ext_resource type="Theme" uid="uid://sa2mq1gu22t1" path="res://Assets/text_theme.tres" id="7_xnv4g"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_eumee"]
 blend_mode = 1
@@ -12,48 +14,13 @@ blend_mode = 1
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0qqmn"]
 size = Vector2(52, 52)
 
-[sub_resource type="Theme" id="Theme_e6po8"]
+[sub_resource type="Theme" id="Theme_u5wvb"]
 default_font = ExtResource("5_e6po8")
-default_font_size = 80
+default_font_size = 16
 
-[sub_resource type="Animation" id="Animation_e6po8"]
-resource_name = "card_flip"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CardImage:scale")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(2, 2), Vector2(0.1, 2), Vector2(2, 2)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CardImageBack:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(2, 2), Vector2(0.1, 2), Vector2(2, 2)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("CardImage:z_index")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [-1, 1]
-}
+[sub_resource type="Theme" id="Theme_mm04k"]
+default_font = ExtResource("5_e6po8")
+default_font_size = 16
 
 [sub_resource type="Animation" id="Animation_bnspj"]
 length = 0.001
@@ -118,6 +85,45 @@ tracks/4/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_e6po8"]
+resource_name = "card_flip"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CardImage:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(0.1, 2), Vector2(2, 2)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CardImageBack:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(2, 2), Vector2(0.1, 2), Vector2(2, 2)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("CardImage:z_index")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [-1, 1]
+}
+
 [sub_resource type="Animation" id="Animation_xnv4g"]
 resource_name = "merge"
 tracks/0/type = "value"
@@ -139,10 +145,10 @@ tracks/1/path = NodePath("CardImage:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.033333335, 0.06666667, 0.10000001, 0.13333333, 0.16666663, 0.20000005),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.033333335, 0.06666668, 0.099999994, 0.1333333, 0.16666672, 0.20000005, 0.23333333, 0.26666668, 0.3, 0.3333333, 0.36666662, 0.40000004, 0.4333334, 0.46666667, 0.5, 0.53333336, 0.56666666, 0.59999996, 0.6333334, 0.66666675, 0.7, 0.73333335, 0.76666665, 0.79999995, 0.83333325, 0.8666667, 0.9000001),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(0, 0), Vector2(5, 0), Vector2(0, 0), Vector2(-5, 0), Vector2(0, 0), Vector2(5, 0), Vector2(0, 0)]
+"values": [Vector2(0, 0), Vector2(5, 0), Vector2(0, 0), Vector2(-5, 0), Vector2(0, 0), Vector2(5, 0), Vector2(0, 0), Vector2(0, 0), Vector2(5, 0), Vector2(0, 0), Vector2(-5, 0), Vector2(0, 0), Vector2(5, 0), Vector2(0, 0), Vector2(0, 0), Vector2(5, 0), Vector2(0, 0), Vector2(-5, 0), Vector2(0, 0), Vector2(5, 0), Vector2(0, 0), Vector2(0, 0), Vector2(5, 0), Vector2(0, 0), Vector2(-5, 0), Vector2(0, 0), Vector2(5, 0), Vector2(0, 0)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -151,7 +157,7 @@ tracks/2/path = NodePath("CardImage:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.20000002),
+"times": PackedFloat32Array(0, 1),
 "transitions": PackedFloat32Array(1, 3.9733384),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(2.184344, 2.184344, 2.184344, 1)]
@@ -164,7 +170,7 @@ _data = {
 &"merge": SubResource("Animation_xnv4g")
 }
 
-[node name="Card" type="Node2D" node_paths=PackedStringArray("card_image", "card_highlight", "card_attribute_1", "card_value_1", "card_collision_shape", "animation_player")]
+[node name="Card" type="Node2D" node_paths=PackedStringArray("card_image", "card_highlight", "card_attribute_1", "card_value_1", "card_description", "card_attribute_name", "card_attribute_text", "card_collision_shape", "animation_player")]
 physics_interpolation_mode = 1
 scale = Vector2(0.8, 0.8)
 script = ExtResource("1_wf8id")
@@ -172,6 +178,9 @@ card_image = NodePath("CardImage")
 card_highlight = NodePath("CardHighlight")
 card_attribute_1 = NodePath("CardAttribute1")
 card_value_1 = NodePath("CardAttribute1/Value")
+card_description = NodePath("CardDescription")
+card_attribute_name = NodePath("CardDescription/CardName")
+card_attribute_text = NodePath("CardDescription/CardDescriptionText")
 card_collision_shape = NodePath("Collision/CollisionShape2D")
 animation_player = NodePath("AnimationPlayer")
 
@@ -198,8 +207,35 @@ texture = ExtResource("2_brehn")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Collision"]
 shape = SubResource("RectangleShape2D_0qqmn")
 
+[node name="CardDescription" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(216.25, -58.75)
+scale = Vector2(1e-05, 1e-05)
+texture = ExtResource("5_bnspj")
+
+[node name="CardName" type="RichTextLabel" parent="CardDescription"]
+offset_left = -28.750002
+offset_top = 27.500004
+offset_right = 28.750002
+offset_bottom = 43.750004
+theme = SubResource("Theme_u5wvb")
+bbcode_enabled = true
+text = "card name"
+metadata/_edit_use_anchors_ = true
+
+[node name="CardDescriptionText" type="RichTextLabel" parent="CardDescription"]
+offset_left = -28.750002
+offset_top = -42.50001
+offset_right = 28.750002
+offset_bottom = 16.250004
+theme = SubResource("Theme_mm04k")
+bbcode_enabled = true
+text = "card description"
+metadata/_edit_use_anchors_ = true
+
 [node name="CardAttribute1" type="Sprite2D" parent="."]
-position = Vector2(-2, 3)
+position = Vector2(146.24998, -92.49999)
+scale = Vector2(1e-05, 1e-05)
 texture = ExtResource("4_e6po8")
 
 [node name="Value" type="RichTextLabel" parent="CardAttribute1"]
@@ -210,9 +246,12 @@ offset_top = -8.0
 offset_right = 117.0
 offset_bottom = 121.99997
 scale = Vector2(0.2, 0.2)
-theme = SubResource("Theme_e6po8")
+theme = ExtResource("7_xnv4g")
+theme_override_colors/default_color = Color(0, 0, 1, 1)
 bbcode_enabled = true
-text = "[center]5x[/center]"
+text = "[b]5x[/b]"
+scroll_active = false
+metadata/_edit_use_anchors_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

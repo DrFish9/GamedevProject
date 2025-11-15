@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://sa2mq1gu22t1"]
+
+[ext_resource type="FontFile" uid="uid://ko5tdwgb126q" path="res://Fonts/NbPixelFontBundle_v1_0/Habbo.ttf" id="1_pok3s"]
+
+[resource]
+default_font = ExtResource("1_pok3s")
+default_font_size = 80

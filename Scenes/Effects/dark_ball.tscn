@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwoldj0f0dw4w"]
+
+[ext_resource type="Script" uid="uid://dad1b4a5k2gmt" path="res://Scripts/dark_ball.gd" id="1_xp4pm"]
+
+[sub_resource type="Gradient" id="Gradient_pades"]
+offsets = PackedFloat32Array(0, 0.41758242, 1)
+colors = PackedColorArray(0.8039216, 0, 0.72156864, 1, 0.4392157, 0.25882354, 0.654902, 1, 0, 0.15294118, 0.1764706, 1)
+
+[node name="DarkBall" type="Node2D"]
+modulate = Color(0.9098039, 0.9098039, 0.9098039, 1)
+scale = Vector2(0.5, 0.5)
+script = ExtResource("1_xp4pm")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+amount = 1024
+local_coords = true
+emission_shape = 1
+emission_sphere_radius = 32.0
+direction = Vector2(0, 0)
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+orbit_velocity_min = -1.0
+orbit_velocity_max = 1.0
+scale_amount_max = 1.5
+color_ramp = SubResource("Gradient_pades")
